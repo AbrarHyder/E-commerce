@@ -19,13 +19,24 @@
 <script>
     document.querySelector("form").addEventListener("submit", signupFn);
 
-    function signupFn(){
+    var userData;
+    if(localStorage.getItem('userData') === null) { 
+        userData=[]
+
+    }
+    else {
+        userData=JSON.parse(localStorage.getItem('userData')) 
+    }
+
+    function signupFn(){  //used to get data
         event.preventDefault();
-        var userObj{
+        var userObj = {
             name: document.querySelector("#name").value,
             password: document.querySelector("#password").value,
             email: document.querySelector("#email").value,
         }
+        userData.push(userObj)
+        localStorage.setItem("userData",JSON.stringify(userData))
     }
 </script>
 </html>
